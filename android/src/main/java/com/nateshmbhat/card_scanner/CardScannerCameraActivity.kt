@@ -20,6 +20,7 @@ import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import com.google.mlkit.vision.text.TextRecognition
 import com.google.mlkit.vision.text.TextRecognizer
+import com.google.mlkit.vision.text.chinese.ChineseTextRecognizerOptions
 import com.nateshmbhat.card_scanner.logger.debugLog
 import com.nateshmbhat.card_scanner.scanner_core.CardScanner
 import com.nateshmbhat.card_scanner.scanner_core.models.CardDetails
@@ -142,7 +143,7 @@ class CardScannerCameraActivity : AppCompatActivity() {
       cameraProvider?.unbind(analysisUseCase)
     }
     textRecognizer?.close()
-    textRecognizer = TextRecognition.getClient()
+    textRecognizer = TextRecognition.getClient(ChineseTextRecognizerOptions.Builder().build())
 
     debugLog("card scanner options : $cardScannerOptions", cardScannerOptions)
     val analysisUseCase = ImageAnalysis.Builder().build()
